@@ -27,15 +27,8 @@ class Voxelize :
         with importlib_resources.path('voxelize', 'libvoxelize_gpu.so') as fname :
             __libvoxelize_gpu = ct.CDLL(fname);
             __cpu_only = False
-    except FileNotFoundError :
+    except OSError:
         __cpu_only = True
-    except OSError as err :
-        if 'cannot open shared object file' in str(err) :
-            print('libvoxelize_gpu.so found but some library not found : %s'%str(err))
-            print('Will continue with CPU-only version.')
-            __cpu_only = True
-        else :
-            raise err
 
     if __cpu_only :
         print('Only the CPU-only flavour of Voxelize is available!')
