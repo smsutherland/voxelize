@@ -136,11 +136,9 @@ python:     $(LIB)/libvoxelize_cpu.so lib $(BUILD)/voxelize_cpu_fpic.o $(VOXELIZ
 	cp $(LIB)/libvoxelize_gpu.so $(PYVOXELIZE)
 	cp $(NETWORK_PATH)/network.pt $(PYVOXELIZE)
 	cp $(NETWORK_PATH)/Rlims.txt $(PYVOXELIZE)
-	$(PIP) install -q . $(PIPFLAGS)
 
 python_cpu: $(LIB)/libvoxelize_cpu.so lib $(BUILD)/voxelize_cpu_fpic.o $(VOXELIZE_CPU_DEP)
 	cp $(LIB)/libvoxelize_cpu.so $(PYVOXELIZE)
-	$(PIP) install -q . $(PIPFLAGS)
 
 $(LIB)/libvoxelize_cpu.a: lib $(BUILD)/voxelize_cpu.o $(VOXELIZE_CPU_DEP)
 	$(AR) $(ARFLAGS) $(LIB)/libvoxelize_cpu.a $(BUILD)/voxelize_cpu.o
